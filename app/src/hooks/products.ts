@@ -1,15 +1,17 @@
-import axios, { AxiosError } from 'axios';
-import  { useEffect, useState } from 'react';
-//import { Product } from './components/Product';
-//import {products } from './data/products';
-import { IProduct } from '../models';
+import axios, { AxiosError } from 'axios'
+import  { useEffect, useState } from 'react'
+import { IProduct } from '../models'
 
 export function  useProducts() {
     const [products, setProducts] = useState<IProduct[]>([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
    
-  
+   
+    function addProduct(product: IProduct) {
+      setProducts(prev => [...prev, product])
+    }
+
     async function fetchProducts() {
       try {
         setError('')
@@ -28,5 +30,5 @@ export function  useProducts() {
     useEffect(() => {
       fetchProducts()
     }, [])
-    return { products, error, loading }
+    return { products, error, loading, addProduct }
 }
