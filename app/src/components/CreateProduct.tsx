@@ -53,6 +53,7 @@ export function CreateProduct({ onCreate }: CreateProductProps) {
             value={value}
             onChange={changeHandler}
             />
+            
             {error && <ErrorMessage error={error} /> }
 
             <button type="submit"
